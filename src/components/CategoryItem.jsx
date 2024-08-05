@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         marginHorizontal: 10, 
         marginVertical: 10,
+        backgroundColor: colors.orange400
     }, 
     text: {
         fontSize: 20,
