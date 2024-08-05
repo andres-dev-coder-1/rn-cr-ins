@@ -1,0 +1,1 @@
+export const baseUrl = "https://final-rn-seguros-default-rtdb.firebaseio.com/";
