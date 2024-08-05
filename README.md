@@ -1,11 +1,22 @@
-### Proyecto final React Native
+## Proyecto final React Native
 
 
 
 #### Clonar el repo
 ```bash
-git clone 
+git clone https://github.com/andres-dev-coder-1/rn-cr-ins.git
 
+```
+
+#### Instalar dependencias
+```bash
+cd rn-cr-ins
+npm i
+```
+
+#### Iniciar la App
+```bash
+npm start
 ```
 
 #### Bibliotecas necesarias
@@ -20,9 +31,9 @@ expo-image-picker
 @react-native-firebase/storage
 @reduxjs/toolkit@2.2.5
 expo-sqlite@13.4.0
+expo-location (con Api key de Google)
 ```
 
-expo-location con Api key de Google
 
 
 #### Features:
