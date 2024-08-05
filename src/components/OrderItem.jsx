@@ -12,9 +12,9 @@ const OrderItem = ({ order }) => {
     <View style={styles.card} onPress={() => {}}>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
-          {new Date(order.createdAt).toLocaleString()}
+          {'Fecha: ' + order.updatedAt}
         </Text>
-        <Text style={styles.text2}>${total}</Text>
+        <Text style={styles.text2}>Total: ${total}</Text>
       </View>
       <Feather name="search" size={30} color="black" />
     </View>
