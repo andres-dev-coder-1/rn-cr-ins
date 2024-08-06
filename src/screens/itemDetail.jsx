@@ -40,7 +40,6 @@ const handleAddCart = () => {
 
   return (
     <View>
-      <Button onPress={() => navigation.goBack()} title="Back" />
       {product ? (
         <View
           style={

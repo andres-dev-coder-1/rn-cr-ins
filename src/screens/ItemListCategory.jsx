@@ -1,15 +1,21 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import { colors } from "../global/colors";
 
 import Search from "../components/Search";
 import ProductItem from "../components/ProductItem.jsx";
 
+import { showBack, hideBack } from '../features/UI/BackButtonSlice.js';
+
 // hooks RTK Query
 import { useGetProductsByCategoryQuery } from "../services/shopServices.js";
 
 const ItemListCategory = ({ navigation, route }) => {
+
+  const dispatch = useDispatch();
+
   const [keyWord, setKeyword] = useState("");
   const [productsFiltered, setProductsFiltered] = useState([]);
   const [error, setError] = useState("");
@@ -17,6 +23,11 @@ const ItemListCategory = ({ navigation, route }) => {
   const { category: categorySelected } = route.params;
 
   const { data: productsFetched, error: errorFetched, isLoading } = useGetProductsByCategoryQuery(categorySelected);
+
+  useEffect(() => {
+    dispatch(showBack());
+    return () => dispatch(hideBack()); // Reset when leaving the screen
+  }, [dispatch]);
 
   useEffect(() => {
     const regexDigits = /\d/;

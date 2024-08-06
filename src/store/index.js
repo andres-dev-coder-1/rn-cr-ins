@@ -3,6 +3,7 @@ import counterReducer from "../features/Counter/CounterSlice";
 import shopReducer from "../features/Shop/ShopSlice";
 import cartReducer from "../features/Cart/CartSlice"
 import authReducer from "../features/User/UserSlice"
+import backButtonReducer from "../features/UI/BackButtonSlice";
 
 // RTK Query
 import { shopApi } from "../services/shopServices";
@@ -15,6 +16,7 @@ const store = configureStore({
     shop: shopReducer,
     cart: cartReducer,
     auth: authReducer,
+    backButton: backButtonReducer,
 
     // config del RTK Query
     [shopApi.reducerPath]: shopApi.reducer,

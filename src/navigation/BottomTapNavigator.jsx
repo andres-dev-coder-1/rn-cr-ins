@@ -1,26 +1,36 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import HomeStackNavigator from './HomeStackNavigator'
-import CartStackNavigator from './CartStackNavigator'
-import OrderStackNavigator from './OrderStackNavigator'
-/* import Cart from '../screens/Cart'
-import Order from '../screens/Order' */
-//import { Header } from 'react-native/Libraries/NewAppScreen'
-import Header from '../components/Header'
-import { colors } from '../global/colors'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeStackNavigator from './HomeStackNavigator';
+import CartStackNavigator from './CartStackNavigator';
+import OrderStackNavigator from './OrderStackNavigator';
+
+import { useSelector } from 'react-redux';
+
+import Header from '../components/Header';
+import { colors } from '../global/colors';
 
 import { FontAwesome5 } from "@expo/vector-icons";
 import MyProfileStackNavigator from './MyProfileStackNavigator';
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
 
 const BottomTapNavigator = () => {
+
+  const { showBackButton } = useSelector(state => state.backButton.value);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        header: () => {
-          return <Header title={route.name} />;
+        header: ({ navigation, route }) => {
+          const isRootScreen = navigation.isFocused() && navigation.canGoBack();
+          return (
+            <Header
+              title={route.name}
+              showBackButton={showBackButton || isRootScreen}
+              onBackPress={() => navigation.goBack()}
+            />
+          );
         },
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBar,
@@ -88,14 +98,13 @@ const BottomTapNavigator = () => {
       />
     </Tab.Navigator>
   );
-}
+};
 
-export default BottomTapNavigator
+export default BottomTapNavigator;
 
 const styles = StyleSheet.create({
-    tabBar: {
-        // backgroundColor: colors.green700,
-        backgroundColor: colors.blue900,
-        height: 60
-    }
-})
+  tabBar: {
+    backgroundColor: colors.blue900,
+    height: 60
+  }
+});
