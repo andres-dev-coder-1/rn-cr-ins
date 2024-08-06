@@ -2,6 +2,7 @@ export const colors = {
   lightGray: "#EDF1D6",
   green300: "#90c00B",
   green700: "#609966",
+  green800: "#747A72",
   green900: "#40513B",
   gray100: "#E0E1DD",
   black: "#000003",
@@ -18,6 +19,7 @@ export const colors = {
   blue700: "#00ACC1",
   blue800: "#0097A7",
   blue900: "#00838F",
+  blue1000: "#036F75",
 
   red100: "#FFEBEE",
   red200: "#FFCDD2",
