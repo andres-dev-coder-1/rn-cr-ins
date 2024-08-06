@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   },
   textCategory: {
     color: colors.green900,
+    fontSize: 14.5,
     width: '70%',
   },
   pressable : {
