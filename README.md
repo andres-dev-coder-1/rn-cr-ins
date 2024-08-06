@@ -45,3 +45,7 @@ Con YUP:
 
 Con Redux Toolkit:
 * Botón de volver atrás dinámico usando ele state: backButton.showBackButton
+
+
+#### Imagenes de muestra:
+![AltText](./img/2.%20lista-productos.png)
