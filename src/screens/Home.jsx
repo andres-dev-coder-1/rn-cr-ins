@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import CategoryItem from "../components/CategoryItem";
 import { colors } from "../global/colors";
 // import categories from "../data/categories.json";
@@ -13,15 +13,17 @@ const Home = ({ navigation, route }) => {
 
 
   return (
-    <View style={styles.flatListContainer}>
-      {/*       <Counter /> */}
-      <FlatList
-        keyExtractor={(category) => category}
-        data={categories}
-        renderItem={({ item }) => (
-          <CategoryItem category={item} navigation={navigation} />
-        )}
-      />
+    <View style={styles.mainContainer}>
+      <Text style={styles.title}>Elige una de nuestras categorías</Text>
+      <View style={styles.flatListContainer}>
+        <FlatList
+          keyExtractor={(category) => category}
+          data={categories}
+          renderItem={({ item }) => (
+            <CategoryItem category={item} navigation={navigation} />
+          )}
+        />
+      </View>
     </View>
   );
 };
@@ -29,12 +31,24 @@ const Home = ({ navigation, route }) => {
 export default Home;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  title: {
+    marginTop: 20,
+    width: "70%",
+    textAlign: "center",
+    fontSize: 26,
+    lineHeight: 25,
+    fontWeight: "bold",
+    color: colors.black
+  },
   flatListContainer: {
     width: "100%",
-    flex: 1,
+    marginTop: 20,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
   },
 });
