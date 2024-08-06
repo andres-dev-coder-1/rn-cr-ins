@@ -3,7 +3,7 @@ import { baseUrl } from "../databases/realtimeDataBase";
 
 
 export const shopApi = createApi({
-  reducerPath: "shopApi",  // nombre para identificar en el Redux Toolkit del Navegador
+  reducerPath: "shopApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ['profileImageGet', 'locationGet'],
   endpoints: (builder) => ({
@@ -21,7 +21,7 @@ export const shopApi = createApi({
       query: (productId) => `products.json?orderBy="id"&equalTo=${productId}`,
       transformResponse: (res) => {
         const transformedResponse = Object.values(res);
-        if (transformedResponse.length) return transformedResponse[0];  // OJO! Con posición [0] puesto que retorna un array
+        if (transformedResponse.length) return transformedResponse[0];
       }
     }),
     getOrderByUser: builder.query({
