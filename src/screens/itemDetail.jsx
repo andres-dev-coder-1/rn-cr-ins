@@ -18,12 +18,12 @@ import { addCartItem } from "../features/Cart/CartSlice";
 const ItemDetail = ({ route, navigation }) => {
   const { width, height } = useWindowDimensions();
   const [orientation, setOrientation] = useState("portrait");
-//  const [product, setProduct] = useState(null);
+  //  const [product, setProduct] = useState(null);
   const { productoId: idSelected } = route.params;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const {data: product, error, isLoading} = useGetProductByIdQuery(idSelected);
+  const { data: product, error, isLoading } = useGetProductByIdQuery(idSelected);
 
   // Landscape: Horisontal
   // Portraint: Vertical
@@ -32,11 +32,11 @@ const ItemDetail = ({ route, navigation }) => {
     else setOrientation("portrait");
   }, [width, height]);
 
-const handleAddCart = () => {
-  // agregar al carrito
-  dispatch(addCartItem)
-  dispatch(addCartItem({...product, quantity: 1}))
-}
+  const handleAddCart = () => {
+    // agregar al carrito
+    dispatch(addCartItem);
+    dispatch(addCartItem({ ...product, quantity: 1 }));
+  };
 
   return (
     <View>
@@ -48,6 +48,7 @@ const handleAddCart = () => {
               : styles.mainContainerLandscape
           }
         >
+          <Text style={styles.productTitle}>{product.title}</Text>
           <Image
             source={{ uri: product.images[0] }}
             style={
@@ -62,7 +63,6 @@ const handleAddCart = () => {
                 : styles.textContainerLandscape
             }
           >
-            <Text>{product.title}</Text>
             <Text>{product.description}</Text>
             <Text style={styles.price}>${product.price}</Text>
             <Button title="Add cart" onPress={handleAddCart}></Button>
@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   image: {
+    marginTop: 20,
+    marginBottom: 30,
     width: "100%",
     height: 250,
   },
@@ -100,6 +102,10 @@ const styles = StyleSheet.create({
 
   textContainer: {
     flexDirection: "column",
+  },
+  productTitle: {
+    fontSize: 25,
+    fontWeight: 'bold'
   },
   textContainerLandscape: {
     width: "50%",
