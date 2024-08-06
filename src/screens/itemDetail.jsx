@@ -53,7 +53,7 @@ const handleAddCart = () => {
             style={
               orientation === "portrait" ? styles.image : styles.imageLandscape
             }
-            resizeMode="cover"
+            resizeMode="contain"
           />
           <View
             style={
