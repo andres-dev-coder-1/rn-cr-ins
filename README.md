@@ -39,7 +39,9 @@ react-native-get-random-values  (necesario para poder usar uuid con Hermes, impl
 
 
 #### Features:
-Con yup:
+Con YUP:
 * validación login: email y contraseña 
 * validación Signup: de password y confirmPassword en tiempo real (uno verifica al otro)
 
+Con Redux Toolkit:
+* Botón de volver atrás dinámico usando ele state: backButton.showBackButton
