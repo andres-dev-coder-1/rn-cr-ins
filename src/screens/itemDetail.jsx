@@ -65,7 +65,7 @@ const ItemDetail = ({ route, navigation }) => {
           >
             <Text>{product.description}</Text>
             <Text style={styles.price}>${product.price}</Text>
-            <Button title="Add cart" onPress={handleAddCart}></Button>
+            <Button title="Agregar al carrito" onPress={handleAddCart}></Button>
           </View>
         </View>
       ) : null}
