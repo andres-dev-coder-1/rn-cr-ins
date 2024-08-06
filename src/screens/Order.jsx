@@ -1,12 +1,15 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 // import OrderData from "../data/orders.json";
 import OrderItem from "../components/OrderItem";
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetOrderByUserQuery } from '../services/shopServices';
 import { useEffect } from 'react';
 
 const Order = () => {
 
-  const { data: OrderData } = useGetOrderByUserQuery("pepito@mail.com");  ///// OJO : Tomar email de la sesión  
+  const { user, localId } = useSelector((state) => state.auth.value);
+  const { data: OrderData } = useGetOrderByUserQuery(user);  
+
   return (
     <View>
       <FlatList

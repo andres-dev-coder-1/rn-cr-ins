@@ -1,18 +1,27 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 
-import CartItem from '../components/CartItem';
 import { useSelector } from 'react-redux';
 import { usePostOrderMutation } from '../services/shopServices';
+
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
+import CartItem from '../components/CartItem';
 
 
 const Cart = () => {
 
-
+  const { user } = useSelector((state) => state.auth.value);
   const { items: CartData, total, updatedAt } = useSelector((state) => state.cart.value);
   const [triggerPostOrder, result] = usePostOrderMutation();
 
   const onConfirmOrder = () => {
-    triggerPostOrder({ updatedAt, items: CartData, user: "pepito@mail.com", total , id:updatedAt });
+    const id = generateId();
+    triggerPostOrder({ updatedAt, items: CartData, user, total, id });
+  };
+
+  const generateId = () => {
+    return uuidv4();
   };
 
   return (
