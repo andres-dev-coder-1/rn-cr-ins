@@ -32,6 +32,8 @@ expo-image-picker
 @reduxjs/toolkit@2.2.5
 expo-sqlite@13.4.0
 expo-location (con Api key de Google)
+uuid
+react-native-get-random-values  (necesario para poder usar uuid con Hermes, implementa crypto.getRandomValues)
 ```
 
 
