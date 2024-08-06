@@ -15,7 +15,7 @@ import MyProfileStackNavigator from './MyProfileStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTapNavigator = () => {
+const BottomTabNavigator = () => {
 
   const { showBackButton } = useSelector(state => state.backButton.value);
 
@@ -100,7 +100,7 @@ const BottomTapNavigator = () => {
   );
 };
 
-export default BottomTapNavigator;
+export default BottomTabNavigator;
 
 const styles = StyleSheet.create({
   tabBar: {

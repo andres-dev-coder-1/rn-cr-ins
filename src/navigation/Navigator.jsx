@@ -2,46 +2,46 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import HomeStackNavigator from './HomeStackNavigator';
-import BottomTapNavigator from './BottomTapNavigator';
+import BottomTabNavigator from './BottomTabNavigator';
 import AuthStackNavigator from './AuthStackNavigator';
 
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { getSession } from '../persistence'
-import { setUser } from '../features/User/UserSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getSession } from '../persistence';
+import { setUser } from '../features/User/UserSlice';
 
 const Navigator = () => {
 
   // const [user, setUser] = useState(null);
   const { user } = useSelector((state) => state.auth.value);
 
-  const dispatch = useDispatch()
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  useEffect(() => {
     (async () => {
       try {
         const response = await getSession();
-        if(response.rows.length){
-          const user = response.rows._array[0]
+        if (response.rows.length) {
+          const user = response.rows._array[0];
           // console.log(user);
           dispatch(setUser({
             email: user.email,
             localId: user.localId,
             idToken: user.token,
-          }))
+          }));
         }
         //console.log(response)
       } catch (error) {
         // console.error(error)
       }
-    })()
-  })
+    })();
+  });
 
   return (
     <NavigationContainer>
       {/* <HomeStackNavigator /> */}
-      {/* <BottomTapNavigator /> */}
+      {/* <BottomTabNavigator /> */}
 
-      {user ? <BottomTapNavigator /> : <AuthStackNavigator />}
+      {user ? <BottomTabNavigator /> : <AuthStackNavigator />}
 
     </NavigationContainer>
   );
