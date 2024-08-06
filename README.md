@@ -48,4 +48,7 @@ Con Redux Toolkit:
 
 
 #### Imagenes de muestra:
-![AltText](./img/2.%20lista-productos.png)
+<div style="display: flex; justify-content: center; gap:10px">
+  <img src="./img/1-inicio.png" alt="Pantalla inicio" width="300"/>
+  <img src="./img/2-lista-productos.png" alt="Lista de productos" width="300"/>
+</div>
