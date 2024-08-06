@@ -1,14 +1,20 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-// import OrderData from "../data/orders.json";
+import React, { useCallback } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 import OrderItem from "../components/OrderItem";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useGetOrderByUserQuery } from '../services/shopServices';
-import { useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Order = () => {
 
   const { user, localId } = useSelector((state) => state.auth.value);
-  const { data: OrderData } = useGetOrderByUserQuery(user);  
+  const { data: OrderData, refetch } = useGetOrderByUserQuery(user);
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   return (
     <View>
