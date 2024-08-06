@@ -41,7 +41,7 @@ const ItemListCategory = ({ navigation, route }) => {
     const hasThreeOrMoreChar = regexThreeOrMoreCharacters.test(keyWord);
 
     if (!hasThreeOrMoreChar && keyWord.length) {
-      setError("Type 3 or more characters");
+      setError("Ingresa 3 o más caracteres");
       return;
     }
 

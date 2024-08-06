@@ -13,7 +13,7 @@ const Search = ({ onSearch = () => {}, error = '',  goBack = () => {} }) => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Search..."
+          placeholder="Buscar..."
           value={keyword}
           onChangeText={setKeyword}
         />
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     width: 250,
     padding: 8,
     fontSize: 18,
-    backgroundColor: colors.green700,
-    color: colors.gray100,
+    backgroundColor: colors.gray100,
+    color: colors.blue900,
     borderRadius: 10,
   },
   errorText: {
-    color: colors.white,
+    color: colors.red500,
     fontSize: 16,
     fontFamily: "Josefin",
   },
