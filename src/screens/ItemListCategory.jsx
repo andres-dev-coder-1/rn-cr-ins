@@ -64,6 +64,10 @@ const ItemListCategory = ({ navigation, route }) => {
         onSearch={setKeyword}
         goBack={() => navigation.goBack()}
       />
+      <Text style={styles.titleCategory}>
+        {categorySelected === 'accesorio' ? 'Accesorios' : categorySelected}
+      </Text>
+
       <FlatList
         data={productsFiltered}
         renderItem={({ item }) => (
@@ -86,4 +90,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
+  titleCategory: {
+    marginVertical:20,
+    fontSize:28,
+    fontWeight:"bold",
+    textTransform:"capitalize"
+  }
 });
