@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { colors } from "../global/colors";
 
 import {
   Button,
@@ -13,6 +14,7 @@ import {
 import { useGetProductByIdQuery } from "../services/shopServices";
 import { useDispatch } from "react-redux";
 import { addCartItem } from "../features/Cart/CartSlice";
+import ProfileButton from "../components/ProfileButton";
 
 
 const ItemDetail = ({ route, navigation }) => {
@@ -35,8 +37,12 @@ const ItemDetail = ({ route, navigation }) => {
   const handleAddCart = () => {
     // agregar al carrito
     dispatch(addCartItem);
-    dispatch(addCartItem({ ...product, quantity: 1 }));
+    dispatch(addCartItem({ ...product, price: getFinalPrice(product.price, product.discountPercentage), quantity: 1 }));
   };
+
+  const getFinalPrice = (productPrice, discountPercentage) => (
+    productPrice * (100 - discountPercentage) / 100
+  );
 
   return (
     <View>
@@ -56,6 +62,19 @@ const ItemDetail = ({ route, navigation }) => {
             }
             resizeMode="contain"
           />
+
+          <View style={styles.priceContainer}>
+            <Text style={styles.textDiscount}>{product.discountPercentage}% OFF</Text>
+            <View style={styles.containerPriceDiscount}>
+              <Text style={styles.textDiscountPercentage}>${getFinalPrice(product.price, product.discountPercentage)}</Text>
+              <Text style={styles.textPrice}>${product.price}</Text>
+            </View>
+          </View>
+          <ProfileButton
+            onPress={handleAddCart}
+            title={"Agregar al carrito"}
+          />
+
           <View
             style={
               orientation === "portrait"
@@ -63,10 +82,9 @@ const ItemDetail = ({ route, navigation }) => {
                 : styles.textContainerLandscape
             }
           >
-            <Text>{product.description}</Text>
-            <Text style={styles.price}>${product.price}</Text>
-            <Button title="Agregar al carrito" onPress={handleAddCart}></Button>
+            <Text style={styles.productDescription}>{product.description}</Text>
           </View>
+
         </View>
       ) : null}
     </View>
@@ -79,7 +97,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     padding: 10,
   },
   mainContainerLandscape: {
@@ -99,9 +117,9 @@ const styles = StyleSheet.create({
     width: "45%",
     height: 200,
   },
-
   textContainer: {
-    flexDirection: "column",
+    // borderWidth: 1,
+    width: "100%",
   },
   productTitle: {
     fontSize: 25,
@@ -114,7 +132,39 @@ const styles = StyleSheet.create({
     alignItems: "start",
     gap: 10,
   },
-  price: {
-    textAlign: "right",
+  productDescription: {
+    fontSize: 20,
+    marginLeft: 20,
+    marginTop: 25,
+    textAlign: "left",
+    // width: "50%"
   },
+  priceContainer: {
+    // borderWidth: 1,
+    marginTop: 4,
+    width: "100%",
+    alignItems: "center"
+  },
+  containerPriceDiscount: {
+    flexDirection: "row",
+    marginTop: 3
+  },
+  textDiscount: {
+    color: colors.orange900,
+    fontWeight: "900",
+    fontSize: 26,
+  },
+  textDiscountPercentage: {
+    color: colors.green900,
+    fontSize: 40,
+  },
+  textPrice: {
+    color: colors.green800,
+    textDecorationLine: "line-through",
+    fontSize: 20.5,
+  },
+  btnCart: {
+    marginTop: 200,
+    color: "red",
+  }
 });

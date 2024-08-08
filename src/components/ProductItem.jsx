@@ -21,7 +21,6 @@ const ProductItem = ({
 
 
   const getFinalPrice = (productPrice, discountPercentage) => (
-
     productPrice * (100 - discountPercentage) / 100
   );
 
